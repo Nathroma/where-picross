@@ -1,11 +1,14 @@
-import { useState } from "react";
 import "./Cell.scss";
 
-function Cell() {
-    const [isChecked, setIsChecked] = useState(false);
+type CellProps = {
+    isChecked: boolean,
+    onInteract: Function
+}
+
+function Cell({ isChecked, onInteract}: CellProps) {
 
     return (
-        <div className="cell" data-checked={isChecked} onClick={() => setIsChecked(!isChecked)}/>
+        <div className="cell" data-checked={isChecked} onClick={() => onInteract()}/>
     )
 }
 
