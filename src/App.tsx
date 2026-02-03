@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import './App.scss';
 import Cell from './components/Cell/Cell';
 import SquareCounter from './components/SquareCounter/SquareCounter';
@@ -7,26 +7,22 @@ function App() {
   const cellCount = 6
   const lineCount = 6
 
-  const [stateLine, setStateLine] = useState<boolean[]>(Array(cellCount).fill(false))
-  const [stateGrid, setStateGrid] = useState< typeof stateLine[]>(Array(lineCount).fill(stateLine))
+  const [stateGrid, setStateGrid] = useState<boolean[][]>(Array(lineCount).fill(Array(cellCount).fill(false)))
 
   const changeState = (line: number, cell: number) => {
     const grid = [...stateGrid]
-    const currentLine = [...stateLine]
-
+    const currentLine = [...grid[line]]
     currentLine[cell] = !currentLine[cell]
-    setStateLine(currentLine)
-    
     grid[line] = currentLine
     setStateGrid(grid)
   }
 
-  const squareCount = useMemo(() => {
+  const squareCount = useCallback((line: number) => {
     const sequence: number[] = []
     let squareNumber: number = 0
     let previousState: boolean | null  = null
-    for (let i = 0; i < stateLine.length; i += 1) {
-      const currentChecked = stateLine[i]
+    for (let i = 0; i < stateGrid[line].length; i += 1) {
+      const currentChecked = stateGrid[line][i]
 
       if (currentChecked) {
         squareNumber += 1
@@ -42,7 +38,7 @@ function App() {
       sequence.push(squareNumber)
     }
     return sequence.join("-")
-  }, [stateLine]);
+  }, [stateGrid]);
 
   return (
     <div className="app">
@@ -51,10 +47,10 @@ function App() {
         <div className='grid'>
           {stateGrid.map((value: boolean[], line: number)=> 
             <div className="line">
-              {stateLine.map((value: boolean, cell: number)=> 
+              {value.map((value: boolean, cell: number)=> 
                 <Cell isChecked={value} onInteract={() => {changeState(line, cell);}}/>
               )}
-              <SquareCounter counter={squareCount}/>
+              <SquareCounter counter={squareCount(line)}/>
             </div>
           )}
         </div>
