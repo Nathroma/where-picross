@@ -1,7 +1,7 @@
 import "./SquareCounter.scss";
 
 type CounterProps = {
-    counter: number
+    counter: string
 }
 
 function SquareCounter({ counter }: CounterProps) {
