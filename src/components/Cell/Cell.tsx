@@ -2,7 +2,7 @@ import "./Cell.scss";
 
 type CellProps = {
     isChecked: boolean,
-    onInteract: Function
+    onInteract: () => unknown
 }
 
 function Cell({ isChecked, onInteract}: CellProps) {

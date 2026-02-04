@@ -1,5 +1,33 @@
-p {
-    font-size: 500;
-    color: black;
-    background-color: beige;
+div {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: flex-start;
+    align-items: center;
+
+    p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 500;
+        color: black;
+        background-color: beige;
+        height: 40px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    &[data-x-axis="false"] {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        p {
+            width: 40px;
+            height: auto;
+            transform: rotateZ(90deg);
+        }
+    }
 }
+
