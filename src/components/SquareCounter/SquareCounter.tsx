@@ -1,26 +1,36 @@
 import { useCallback } from "react";
+import { transpose } from "../utils/components-utils";
 import "./SquareCounter.scss";
 
 type CounterProps = {
-    stateGrid: boolean[][]
+    currentGrid: boolean[][]
+    solutionGrid: boolean[][]
     isXAxis: boolean
 }
 
-function SquareCounter({ stateGrid, isXAxis }: CounterProps) {
+function SquareCounter({ currentGrid, solutionGrid,  isXAxis }: CounterProps) {
 
-    const squareCount = useCallback((index: number, isXAxis:boolean) => {
+    const isSequenceGuessed = (index: number, isXaxis: boolean, solutionGrid: boolean[][]) => {
+        let currentTransposedGrid = []
+        if (isXaxis) {
+            currentTransposedGrid = currentGrid
+            currentTransposedGrid = currentGrid
+        } else {
+            currentTransposedGrid = transpose(currentGrid)
+            currentTransposedGrid = transpose(currentGrid)
+        }
+        const guessedSequence: boolean[] = currentTransposedGrid[index]
+
+    }
+
+    const newSquareCount = useCallback((grid: boolean[]) => {
         const sequence: number[] = []
-        const forIterate: number = isXAxis ? stateGrid[0].length : stateGrid.length
         let squareNumber: number = 0
         let previousState: boolean | null  = null
         let currentChecked: boolean | null = null
 
-        for (let i = 0; i < forIterate; i += 1) {
-            if (isXAxis) {
-                currentChecked = stateGrid[index][i] 
-            } else {
-                currentChecked = stateGrid[i][index]
-            }
+        for (let i = 0; i < grid.length; i += 1) {
+            currentChecked = grid[i] 
 
             if (currentChecked) {
                 squareNumber += 1
@@ -37,14 +47,21 @@ function SquareCounter({ stateGrid, isXAxis }: CounterProps) {
             sequence.push(squareNumber)
         }
         return sequence.join("-")
-    }, [stateGrid]);
+    }, [currentGrid]);
 
     return (
         <div className={"counter"} data-x-axis={isXAxis}>
-            {stateGrid.map((_value: boolean[], index: number) => 
-              <p >
-                {squareCount(index, isXAxis)}
-              </p>
+            {(isXAxis
+                ? currentGrid.map((value: boolean[], _: number) => 
+                    <p>
+                        {newSquareCount(value)}
+                    </p>
+                  )
+                : transpose(currentGrid).map((value: boolean[], _: number) => 
+                    <p>
+                        {newSquareCount(value)}
+                    </p>
+                  )
             )}
         </div>
     )

@@ -7,6 +7,8 @@ function App() {
 
   const solutionGrid = [
     [true, true, false, true, true, true],
+    [true, true, false, true, true, true],
+    [true, true, false, true, true, true],
     [true, true, false, false, true, true],
     [false, true, false, false, false, true],
     [false, false, false, true, true, true,],
@@ -16,14 +18,14 @@ function App() {
 
   const startState: boolean[][] = Array(solutionGrid.length).fill(Array(solutionGrid[0].length).fill(false))
 
-  const [stateGrid, setStateGrid] = useState<boolean[][]>(startState)
+  const [currentGrid, setCurrentGrid] = useState<boolean[][]>(startState)
 
-  const changeState = (line: number, cell: number) => {
-    const grid = [...stateGrid]
+  const changeGridState = (line: number, cell: number) => {
+    const grid = [...currentGrid]
     const currentLine = [...grid[line]]
     currentLine[cell] = !currentLine[cell]
     grid[line] = currentLine
-    setStateGrid(grid)
+    setCurrentGrid(grid)
   }
 
   return (
@@ -31,19 +33,19 @@ function App() {
       <h1>Where Picross</h1>
       <div className='board'>
         <div className='vertical-counter-wrapper'>
-          <SquareCounter stateGrid={solutionGrid} isXAxis={false}/>
+          <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={false}/>
         </div>
         <div className='horizontal-wrapper'>
           <div className='horizontal-counter-wrapper'>
-            <SquareCounter stateGrid={solutionGrid} isXAxis={true}/>
+            <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={true}/>
           </div>
-          <Grid stateGrid={stateGrid} onCellClick={changeState}/>
+          <Grid stateGrid={currentGrid} onCellClick={changeGridState}/>
           <div className='horizontal-counter-wrapper'>
-            <SquareCounter stateGrid={stateGrid} isXAxis={true}/>
+            <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={true}/>
           </div>
         </div>
         <div className='vertical-counter-wrapper'>
-          <SquareCounter stateGrid={stateGrid} isXAxis={false}/>
+          <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={false}/>
         </div>
       </div>
     </div>
