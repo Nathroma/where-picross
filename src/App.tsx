@@ -1,18 +1,14 @@
 import { useState } from 'react';
 import './App.scss';
+import CounterBlock from './components/CounterBlock/CounterBlock';
 import Grid from './components/Grid/Grid';
-import SquareCounter from './components/SquareCounter/SquareCounter';
 
 function App() {
 
   const solutionGrid = [
-    [true, true, false, true, true, true],
-    [true, true, false, true, true, true],
-    [true, true, false, true, true, true],
-    [true, true, false, false, true, true],
-    [false, true, false, false, false, true],
-    [false, false, false, true, true, true,],
-    [false, true, false, true, true, true,],
+    [false, true, true, false, false, true],
+    [true, false, false, true, true, true,],
+    [true, true, true, true, true, true,],
     [false, true, false, true, true, true,],
   ]
 
@@ -33,19 +29,13 @@ function App() {
       <h1>Where Picross</h1>
       <div className='board'>
         <div className='vertical-counter-wrapper'>
-          <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={false}/>
+          <CounterBlock solutionGrid={solutionGrid} currentGrid={currentGrid} isXAxis={false}/>
         </div>
         <div className='horizontal-wrapper'>
           <div className='horizontal-counter-wrapper'>
-            <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={true}/>
+            <CounterBlock solutionGrid={solutionGrid} currentGrid={currentGrid} isXAxis={true}/>
           </div>
           <Grid stateGrid={currentGrid} onCellClick={changeGridState}/>
-          <div className='horizontal-counter-wrapper'>
-            <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={true}/>
-          </div>
-        </div>
-        <div className='vertical-counter-wrapper'>
-          <SquareCounter currentGrid={currentGrid} solutionGrid={solutionGrid} isXAxis={false}/>
         </div>
       </div>
     </div>
