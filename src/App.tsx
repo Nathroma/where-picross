@@ -24,9 +24,15 @@ function App() {
     setCurrentGrid(grid)
   }
 
+  function IsComplete() {
+    const isComplete = JSON.stringify(currentGrid) === JSON.stringify(solutionGrid)
+    return isComplete ? <h2>Congratulation</h2> : <h2/>
+  }
+
   return (
     <div className="app">
       <h1>Where Picross</h1>
+      <IsComplete/>
       <div className='board'>
         <div className='vertical-counter-wrapper'>
           <CounterBlock solutionGrid={solutionGrid} currentGrid={currentGrid} isXAxis={false}/>
