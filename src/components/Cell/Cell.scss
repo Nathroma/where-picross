@@ -3,10 +3,22 @@
     height: 38px;
     border: 1px solid #aaaaaa;
     background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      height: 35px;
+      width: 35px;
+    }
     
-    &[data-checked="true"] {
+    &[data-state="checked"] {
       background-color: #000000;
       border-color: #000000;
     }
+
+    // &[data-state="crossed"] {
+    //   background-color: #ff0000;
+    //   border-color: #ff0000;
+    // }
 } 
   
