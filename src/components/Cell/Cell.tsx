@@ -8,27 +8,28 @@ type CellProps = {
 
 function Cell({ isChecked, onInteract}: CellProps) {
 
-    const [state, setState] = useState("blank")
+    const [isCrossed, setIsCrossed] = useState<boolean>(false)
+
+    if (isChecked && isCrossed) {
+        setIsCrossed(false)
+    }   
 
     function toggleChecked() {
-        if (state !== "crossed") {
-            onInteract()
-            isChecked === false ? setState("checked") : setState("blank")
-        }
+        !isCrossed ? onInteract() : null
     }
 
     function toggleCrossed() {
-        if (state !== "checked") {
-            state === "blank" ? setState("crossed") : setState("blank")
+        if (!isChecked) {
+            isCrossed ? setIsCrossed(false) : setIsCrossed(true)
         }
     }
 
     return (
         <div className="cell" 
-            data-state={state} 
+            data-is-checked={isChecked}
             onClick={toggleChecked} 
             onContextMenu={toggleCrossed}>
-            {(state === "crossed") && (
+            {(isCrossed) && (
                 <img src={"./src/assets/cross.svg"} alt="cross" />
             )}
         </div>

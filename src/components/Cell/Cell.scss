@@ -11,14 +11,9 @@
       width: 35px;
     }
     
-    &[data-state="checked"] {
+    &[data-is-checked="true"] {
       background-color: #000000;
       border-color: #000000;
     }
-
-    // &[data-state="crossed"] {
-    //   background-color: #ff0000;
-    //   border-color: #ff0000;
-    // }
 } 
   
