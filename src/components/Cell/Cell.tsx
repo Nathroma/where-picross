@@ -18,7 +18,8 @@ function Cell({ isChecked, onInteract}: CellProps) {
         !isCrossed ? onInteract() : null
     }
 
-    function toggleCrossed() {
+    function toggleCrossed(event: React.MouseEvent<HTMLDivElement>) {
+        event.preventDefault()
         if (!isChecked) {
             isCrossed ? setIsCrossed(false) : setIsCrossed(true)
         }
