@@ -1,0 +1,28 @@
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    h2 {
+        display: flex;
+        width: 400px;
+        align-items: center;
+        justify-content: center;
+        color: black;
+    }
+
+    .puzzles-grid {
+        width: 740px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+}
+
+.tile {    
+    :hover {
+        background-color: lightgray;
+    }  
+}
