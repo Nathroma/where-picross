@@ -10,7 +10,13 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Where Picross</h1>
+      <div className='header'>
+        <div className='title-logo'>
+          <h1>Where Picross</h1>
+          <img src="/where-picross-logo.png" alt="where-picross-logo" />
+        </div>
+        <div className='divider'/>
+      </div>
       {currentPuzzle ? (
         <GamePage picross={currentPuzzle!} returnToMenu={() => setCurrentPuzzle(null)}/>
       ) : (
