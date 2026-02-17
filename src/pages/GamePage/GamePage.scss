@@ -5,6 +5,27 @@
   flex-direction: column;
   padding: 20px;
 
+  .board-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    .main-menu-button {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      background-color: lightgray;
+
+      img {
+        height: 20px;
+        width: 20;
+      }
+    }
+
+    h2 {
+      color: green;
+    }
+  }
 
   .board {
       display: flex;
@@ -43,5 +64,18 @@
     .return-button {
       color: blue;
       width: 300px;
+    }
+
+    .footer-board{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: -webkit-fill-available;
+      padding-left: 80px;
+
+      button {
+        background-color: lightgray;
+        color: black;
+      }
     }
 }
