@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { getColumn, sequenceCount } from "../utils/components-utils";
+import { getColumn, sequenceCount } from "@/components/utils/components-utils";
 import "./CounterBlock.scss";
 
 type CounterProps = {

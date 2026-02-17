@@ -8,24 +8,24 @@ export const picrossList: PicrossDatas[] = [
     // 5 x 5
     {
         id: 0,
-        name: "Croix",
+        name: "Note",
         grid: [
-            [false, false, true, false, false],
-            [false, false, true, false, false],
-            [true, true, true, true, true],
-            [false, false, true, false, false],
-            [false, false, true, false, false],
+            [false, false, true, true, false],
+            [false, false, true, false, true],
+            [true, true, true, false, true],
+            [true, true, true, false, false],
+            [true, true, true, false, false],
         ]
     },
     {
         id: 1,
         name: "Coeur",
         grid: [
-            [true,  false, false, false, true ],
-            [true,  true,  false, true,  true ],
-            [true,  true,  true,  true,  true ],
-            [false, true,  true,  true,  false],
-            [false, false, true,  false, false],
+            [false, true, false, true, false ],
+            [true, false, true, false, true ],
+            [true, false, false, false, true ],
+            [false, true, true, true, false],
+            [false, false, true, false, false],
         ]
     },
     {

@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
-import CounterBlock from "../../components/CounterBlock/CounterBlock";
-import Grid from "../../components/Grid/Grid";
-import StopWatch from "../../components/StopWatch/StopWatch";
-import type { PicrossDatas } from "../../components/utils/picross-schema";
+import CounterBlock from "@/components/CounterBlock/CounterBlock";
+import Grid from "@/components/Grid/Grid";
+import StopWatch, { formatTimer } from "@/components/StopWatch/StopWatch";
+import type { PicrossDatas } from "@/components/utils/picross-schema";
+import type { PicrossSave } from "@/types/local-save";
+import { useEffect, useMemo, useState } from "react";
 import "./GamePage.scss";
 
 type GamePageProps = {
@@ -11,13 +12,37 @@ type GamePageProps = {
 }
 
 function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
+    const progression: PicrossSave = useMemo(() => JSON.parse(String(picross.id)), [])
 
-    const [isFinished, setIsFinished] = useState<boolean>(false)
-
+    const [isFinished, setIsFinished] = useState<boolean>(progression.isComplete || false)
+    const [timer, setTimer] = useState<number>(progression.time || 0)
     const solutionGrid = useMemo(() => picross.grid, [])
     const startState: boolean[][] = Array(solutionGrid.length).fill(Array(solutionGrid[0].length).fill(false))
+    const [currentGrid, setCurrentGrid] = useState<boolean[][]>(progression.gridState || startState)
 
-    const [currentGrid, setCurrentGrid] = useState<boolean[][]>(startState)
+    useEffect(() => {
+        if (!isFinished) {
+            const interval = setInterval(() => {
+                setTimer(timer => timer + 1)
+            }, 1000)
+            return () => clearInterval(interval)
+        }
+    }, [isFinished])
+    
+    useMemo(() => {
+        if (JSON.stringify(currentGrid) === JSON.stringify(solutionGrid)) {
+            setIsFinished(true)
+        }
+    }, [currentGrid, solutionGrid])
+
+    useMemo(() => {
+        const progression: PicrossSave = {
+            time: timer,
+            isComplete: isFinished,
+            gridState: currentGrid
+        }
+        window.localStorage.setItem(String(picross.id), JSON.stringify(progression))
+    }, [currentGrid, isFinished, timer])
 
     const changeGridState = (line: number, cell: number) => {
       const grid = [...currentGrid]
@@ -27,12 +52,6 @@ function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
       setCurrentGrid(grid)
     }
 
-    useMemo(() => {
-        if (JSON.stringify(currentGrid) === JSON.stringify(solutionGrid)) {
-            setIsFinished(true)
-        }
-    }, [currentGrid, solutionGrid])
-
     return (
         <div className="game-page">
             <div className="board-header">
@@ -40,7 +59,7 @@ function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
                     <img src="./src/assets/arrow.svg" alt="return-arrow" />
                     <img src="./src/assets/house.svg" alt="house" />
                 </button>
-                {isFinished ? <h2>Félicitation !</h2> : <h2/>}
+                {isFinished ? <p>Félicitation ! vous avez mis {formatTimer(timer)}</p> : <p/>}
             </div>
             <div className='board'>
                 <div className='vertical-counter-wrapper'>
@@ -56,7 +75,7 @@ function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
                     <button onClick={() => console.log(currentGrid)}>
                         Log
                     </button>
-                    <StopWatch stopTimer={isFinished}/>
+                    <StopWatch timer={timer}/>
                 </div>
             </div>
         </div>

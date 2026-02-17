@@ -1,4 +1,4 @@
-import Cell from "../Cell/Cell";
+import Cell from "@/components/Cell/Cell";
 import "./Grid.scss";
 
 type stateGridProps= {

@@ -1,18 +1,20 @@
-import type { PicrossDatas } from "../utils/picross-schema"
-import "./PuzzleTile.scss"
+import type { PicrossDatas } from "@/components/utils/picross-schema";
+import { useMemo } from "react";
+import "./PuzzleTile.scss";
 
 type PuzzleTileProps = {
-    selectedPuzzle: PicrossDatas
+    puzzle: PicrossDatas
     clickTile: () => unknown
 }
 
-function PuzzleTile({selectedPuzzle, clickTile}: PuzzleTileProps) {
+function PuzzleTile({puzzle, clickTile}: PuzzleTileProps) {
+    const progression = useMemo(() => JSON.parse(String(puzzle.id)), [])
 
-    const puzzleSize = `${selectedPuzzle.grid.length}x${selectedPuzzle.grid[0].length}`
+    const puzzleSize = `${puzzle.grid.length}x${puzzle.grid[0].length}`
 
     return (
-        <div className="tile" onClick={() => clickTile()}>
-            <h3>{selectedPuzzle.name}</h3>
+        <div className="tile" data-complete={progression.isComplete || false} onClick={() => clickTile()}>
+            <h3>{puzzle.name}</h3>
             <p>{puzzleSize}</p>
             <img src="src\assets\question-mark.svg" alt="question-mark" />
         </div>
