@@ -1,5 +1,6 @@
+import MapGrid from "@/components/MapGrid/MapGrid";
 import type { PicrossDatas } from "@/components/utils/picross-schema";
-import { useMemo } from "react";
+import { useLoadProgress } from "@/hooks/save-load";
 import "./PuzzleTile.scss";
 
 type PuzzleTileProps = {
@@ -8,15 +9,14 @@ type PuzzleTileProps = {
 }
 
 function PuzzleTile({puzzle, clickTile}: PuzzleTileProps) {
-    const progression = useMemo(() => JSON.parse(String(puzzle.id)), [])
-
     const puzzleSize = `${puzzle.grid.length}x${puzzle.grid[0].length}`
+    const blankState: boolean[][] = Array(puzzle.grid.length).fill(Array(puzzle.grid[0].length).fill(false))
 
     return (
-        <div className="tile" data-complete={progression.isComplete || false} onClick={() => clickTile()}>
+        <div className="tile" data-complete={useLoadProgress(puzzle.id).isComplete} onClick={() => clickTile()}>
             <h3>{puzzle.name}</h3>
             <p>{puzzleSize}</p>
-            <img src="src\assets\question-mark.svg" alt="question-mark" />
+            <MapGrid grid={useLoadProgress(puzzle.id).gridState ?? blankState}/>
         </div>
     )
 }

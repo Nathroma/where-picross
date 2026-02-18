@@ -1,0 +1,10 @@
+.grid {
+    display: flex;
+    flex-direction: column;
+    line-height: 0px;
+
+    .line {
+        display: flex;
+        flex-direction: row;
+    }
+}

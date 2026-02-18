@@ -1,0 +1,19 @@
+.map-grid {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    width: 60px;
+    border: 1px solid black;
+
+    .map-line {
+        display: flex;
+        flex-direction: row;
+
+        .map-cell {
+            aspect-ratio: 1;
+            &[data-is-checked="true"] {
+                background-color: #000000;
+            }
+        }
+    }
+}

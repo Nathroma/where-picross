@@ -2,7 +2,7 @@ import CounterBlock from "@/components/CounterBlock/CounterBlock";
 import Grid from "@/components/Grid/Grid";
 import StopWatch, { formatTimer } from "@/components/StopWatch/StopWatch";
 import type { PicrossDatas } from "@/components/utils/picross-schema";
-import type { PicrossSave } from "@/types/local-save";
+import { saveProgress, useLoadProgress } from "@/hooks/save-load";
 import { useEffect, useMemo, useState } from "react";
 import "./GamePage.scss";
 
@@ -12,37 +12,38 @@ type GamePageProps = {
 }
 
 function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
-    const progression: PicrossSave = useMemo(() => JSON.parse(String(picross.id)), [])
 
-    const [isFinished, setIsFinished] = useState<boolean>(progression.isComplete || false)
-    const [timer, setTimer] = useState<number>(progression.time || 0)
+    const [isFinished, setIsFinished] = useState<boolean>(useLoadProgress(picross.id).isComplete)
+    const [timer, setTimer] = useState<number>(useLoadProgress(picross.id).time)
+    
     const solutionGrid = useMemo(() => picross.grid, [])
     const startState: boolean[][] = Array(solutionGrid.length).fill(Array(solutionGrid[0].length).fill(false))
-    const [currentGrid, setCurrentGrid] = useState<boolean[][]>(progression.gridState || startState)
+    const [currentGrid, setCurrentGrid] = useState<boolean[][]>(useLoadProgress(picross.id).gridState ?? startState)
 
     useEffect(() => {
         if (!isFinished) {
             const interval = setInterval(() => {
                 setTimer(timer => timer + 1)
             }, 1000)
+
             return () => clearInterval(interval)
         }
     }, [isFinished])
     
-    useMemo(() => {
+    useEffect(() => {
         if (JSON.stringify(currentGrid) === JSON.stringify(solutionGrid)) {
             setIsFinished(true)
         }
     }, [currentGrid, solutionGrid])
 
-    useMemo(() => {
-        const progression: PicrossSave = {
+    useEffect(() => {
+        saveProgress(picross.id, {
             time: timer,
             isComplete: isFinished,
             gridState: currentGrid
-        }
-        window.localStorage.setItem(String(picross.id), JSON.stringify(progression))
-    }, [currentGrid, isFinished, timer])
+        })
+    }, [timer, isFinished, currentGrid, picross.id])
+    
 
     const changeGridState = (line: number, cell: number) => {
       const grid = [...currentGrid]

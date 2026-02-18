@@ -1,5 +1,5 @@
 export type PicrossSave = {
-    time: number | null,
-    isComplete: boolean | null,
+    time: number,
+    isComplete: boolean,
     gridState: boolean[][] | null,
 }
