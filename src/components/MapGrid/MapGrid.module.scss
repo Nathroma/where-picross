@@ -1,15 +1,15 @@
-.map-grid {
+.mapGrid {
     display: flex;
     flex-direction: column;
     height: 60px;
     width: 60px;
     border: 1px solid black;
 
-    .map-line {
+    .mapLine {
         display: flex;
         flex-direction: row;
 
-        .map-cell {
+        .mapCell {
             aspect-ratio: 1;
             &[data-is-checked="true"] {
                 background-color: #000000;

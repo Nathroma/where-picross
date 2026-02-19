@@ -4,7 +4,7 @@ import StopWatch, { formatTimer } from "@/components/StopWatch/StopWatch";
 import type { PicrossDatas } from "@/components/utils/picross-schema";
 import { saveProgress, useLoadProgress } from "@/hooks/save-load";
 import { useEffect, useMemo, useState } from "react";
-import "./GamePage.scss";
+import style from "./GamePage.module.scss";
 
 type GamePageProps = {
     picross: PicrossDatas
@@ -46,33 +46,36 @@ function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
     
 
     const changeGridState = (line: number, cell: number) => {
-      const grid = [...currentGrid]
-      const currentLine = [...grid[line]]
-      currentLine[cell] = !currentLine[cell]
-      grid[line] = currentLine
-      setCurrentGrid(grid)
+        if (!isFinished) {
+            const grid = [...currentGrid]
+            const currentLine = [...grid[line]]
+            currentLine[cell] = !currentLine[cell]
+            grid[line] = currentLine
+            setCurrentGrid(grid)
+        }
     }
 
     return (
-        <div className="game-page">
-            <div className="board-header">
-                <button className="main-menu-button" onClick={() => returnToMainMenu()}>
+        <div className={style.gamePage}>
+            <div className={style.boardHeader}>
+                <button className={style.mainMenuButton} onClick={() => returnToMainMenu()}>
                     <img src="./src/assets/arrow.svg" alt="return-arrow" />
                     <img src="./src/assets/house.svg" alt="house" />
                 </button>
                 {isFinished ? <p>Félicitation ! vous avez mis {formatTimer(timer)}</p> : <p/>}
             </div>
-            <div className='board'>
-                <div className='vertical-counter-wrapper'>
+            <div className={style.board}>
+                <div className={style.verticalCounterWrapper}>
+                    <p/>
                     <CounterBlock solutionGrid={solutionGrid} currentGrid={currentGrid} isXAxis={false}/>
                 </div>
-                <div className='horizontal-wrapper'>
-                    <div className='horizontal-counter-wrapper'>
+                <div className={style.horizontalWrapper}>
+                    <div className={style.horizontalCounterWrapper}>
                         <CounterBlock solutionGrid={solutionGrid} currentGrid={currentGrid} isXAxis={true}/>
                     </div>
                         <Grid stateGrid={currentGrid} onCellClick={changeGridState}/>
                 </div>
-                <div className="footer-board">
+                <div className={style.footerBoard}>
                     <button onClick={() => console.log(currentGrid)}>
                         Log
                     </button>

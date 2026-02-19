@@ -2,11 +2,14 @@
     max-height: 70px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 3px;
 
-    .title-logo {
+    .titleLogo {
       display: flex;
       flex-direction: row;
+      align-items: center;
       gap: 50px;
     }
 

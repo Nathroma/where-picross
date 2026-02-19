@@ -1,7 +1,7 @@
 import MapGrid from "@/components/MapGrid/MapGrid";
 import type { PicrossDatas } from "@/components/utils/picross-schema";
 import { useLoadProgress } from "@/hooks/save-load";
-import "./PuzzleTile.scss";
+import style from "./PuzzleTile.module.scss";
 
 type PuzzleTileProps = {
     puzzle: PicrossDatas
@@ -13,8 +13,8 @@ function PuzzleTile({puzzle, clickTile}: PuzzleTileProps) {
     const blankState: boolean[][] = Array(puzzle.grid.length).fill(Array(puzzle.grid[0].length).fill(false))
 
     return (
-        <div className="tile" data-complete={useLoadProgress(puzzle.id).isComplete} onClick={() => clickTile()}>
-            <h3>{puzzle.name}</h3>
+        <div className={style.tile} data-complete={useLoadProgress(puzzle.id).isComplete} onClick={() => clickTile()}>
+            <h3>{useLoadProgress(puzzle.id).isComplete ? puzzle.name : "???"}</h3>
             <p>{puzzleSize}</p>
             <MapGrid grid={useLoadProgress(puzzle.id).gridState ?? blankState}/>
         </div>

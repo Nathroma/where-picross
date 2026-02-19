@@ -1,4 +1,4 @@
-div {
+.counterBlock {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -18,7 +18,7 @@ div {
         &[data-is-guessed="true"] {
             color: rgb(6, 172, 6);
             font-size: large;
-    }
+        }
     }
 
     &[data-x-axis="false"] {

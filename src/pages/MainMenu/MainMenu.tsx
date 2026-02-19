@@ -1,6 +1,6 @@
 import PuzzleTile from "@/components/PuzzleTile/PuzzleTile";
 import { picrossList, type PicrossDatas } from "@/components/utils/picross-schema";
-import "./MainMenu.scss";
+import style from "./MainMenu.module.scss";
 
 type MainMenuProps = {
     onPuzzleSelect: (tile: PicrossDatas) => unknown
@@ -9,11 +9,11 @@ type MainMenuProps = {
 function MainMenu({onPuzzleSelect}: MainMenuProps) {
 
     return (
-    <div className="main-menu">
+    <div className={style.mainMenu}>
         <h2>Choisissez un puzzle</h2>
-        <div className="puzzles-grid">
+        <div className={style.puzzlesGrid}>
             {picrossList.map((picrossDatas: PicrossDatas, _) => 
-                <div className="tile">
+                <div className={style.tile}>
                     <PuzzleTile puzzle={picrossDatas} clickTile={() => onPuzzleSelect(picrossDatas)}/>
                 </div>
             )}

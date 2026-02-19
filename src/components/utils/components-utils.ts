@@ -25,5 +25,6 @@ export const sequenceCount = (array: boolean[]) => {
     if (squareNumber != 0) {
         sequence.push(squareNumber)
     }
+    sequence.length === 0 ? sequence.push(0) : null
     return sequence.join("-")
 };

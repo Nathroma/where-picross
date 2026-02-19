@@ -1,16 +1,17 @@
-.game-page {
+.gamePage {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 20px;
 
-  .board-header {
+  .boardHeader {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
 
-    .main-menu-button {
+    .mainMenuButton { 
       display: flex;
       flex-direction: row;
       gap: 5px;
@@ -31,38 +32,41 @@
   .board {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
     }
     
-    .horizontal-wrapper {
+    .horizontalWrapper {
       display: flex;
       flex-direction: row;
+      justify-content: center;
     
-      .horizontal-counter-wrapper {
+      .horizontalCounterWrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
       }
     }
     
-    .vertical-counter-wrapper {
+    .verticalCounterWrapper {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      margin-left: 80px;
     }
 
-    .return-button {
+    .returnButton {
       color: blue;
       width: 300px;
     }
 
-    .footer-board{
+    .footerBoard{
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      width: -webkit-fill-available;
-      padding-left: 80px;
-
+      justify-content: center;
+      align-items: center;
+      margin-left: 80px;
+      gap: 100px;
+      
       button {
         background-color: lightgray;
         color: black;

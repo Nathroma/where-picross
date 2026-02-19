@@ -1,4 +1,4 @@
-import "./StopWatch.scss"
+import style from "./StopWatch.module.scss"
 
 type StopWatchProps = {
     timer: number
@@ -23,7 +23,7 @@ export function formatTimer(timer: number): string {
 
 function StopWatch({timer}: StopWatchProps) {
     return (
-        <p>{formatTimer(timer)}</p>
+        <p className={style.stopWatch}>{formatTimer(timer)}</p>
     )
 }
 
