@@ -28,3 +28,7 @@ export const sequenceCount = (array: boolean[]) => {
     sequence.length === 0 ? sequence.push(0) : null
     return sequence.join("-")
 };
+
+export const getPicrossDifficulty = (grid: boolean[][]) => {
+    return grid.length * grid[0].length
+}

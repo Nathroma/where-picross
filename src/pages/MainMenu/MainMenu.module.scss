@@ -22,6 +22,33 @@
     }
 }
 
+.difficultyBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .difficultyHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: bisque;
+        padding: 10px;
+        width: 800px;
+        height: 20px;
+        
+        p {
+            color: black;
+        }
+    }
+
+    .tileBlock {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+    }
+}
+
 .tile {    
     :hover {
         background-color: lightgray;

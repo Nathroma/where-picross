@@ -1,11 +1,11 @@
 import type { PicrossSave } from "@/types/local-save";
 import { useMemo } from "react";
 
-export function saveProgress(id: number, saveDatas: PicrossSave)  {
-    window.localStorage.setItem(String(id), JSON.stringify(saveDatas))
+export function saveProgress(id: string, saveDatas: PicrossSave)  {
+    window.localStorage.setItem(id, JSON.stringify(saveDatas))
 }
 
-export function useLoadProgress(id: number): PicrossSave {
+export function useLoadProgress(id: string): PicrossSave {
     const blankDatas = useMemo(() => {
         return {
             time: 0,
