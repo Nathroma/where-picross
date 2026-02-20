@@ -1,0 +1,29 @@
+#root {
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+}
+
+h1 {
+  color: #c32121;
+  margin: 0;
+}
+
+h2 {
+  color: green;
+  font-weight: bold;
+  height: 25px;
+  width: 200px;
+}
+
+p {
+  margin: 0;
+}

@@ -1,0 +1,20 @@
+.grid {
+    display: flex;
+    flex-direction: column;
+    line-height: 0px;
+
+    .line {
+        display: flex;
+        flex-direction: row;
+
+        & > *:nth-child(5n):not(:last-child) {
+            border-right-width: 2px;
+            border-right-color: #000;
+        }
+    }
+
+    .line:nth-child(5n):not(:last-child) > * {
+        border-bottom-width: 2px;
+        border-bottom-color: #000;
+    }
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Cell.scss";
+import style from "./Cell.module.scss";
 
 type CellProps = {
     isChecked: boolean,
@@ -26,7 +26,7 @@ function Cell({ isChecked, onInteract}: CellProps) {
     }
 
     return (
-        <div className="cell" 
+        <div className={style.cell} 
             data-is-checked={isChecked}
             onClick={toggleChecked} 
             onContextMenu={toggleCrossed}>

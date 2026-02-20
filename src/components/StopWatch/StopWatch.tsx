@@ -1,43 +1,29 @@
-import { useEffect, useState } from "react"
-import "./StopWatch.scss"
+import style from "./StopWatch.module.scss"
 
 type StopWatchProps = {
-    stopTimer: boolean
+    timer: number
 }
 
-function StopWatch({stopTimer}: StopWatchProps) {
+export function formatTimer(timer: number): string {
+    const rawHour: number = Math.floor(timer / 3600)
+    const rawMinute: number = Math.floor(timer / 60) % 60
+    const rawSecond: number = timer % 60
 
-    const [timer, setTimer] = useState<number>(0)
-
-    useEffect(()=> {
-        if (!stopTimer) {
-            const interval = setInterval(() => {
-                setTimer(timer => timer + 1)
-            }, 1000)
-            return () => clearTimeout(interval)
-        }
-       
-    }, [stopTimer])
-
-    const formattedTimer = () => {
-        const rawHour: number = Math.floor(timer / 3600)
-        const rawMinute: number = Math.floor(timer / 60) % 60
-        const rawSecond: number = timer % 60
-
-        if (rawHour === 0) {
-            const formattedMinute: string = String(rawMinute)
-            const formattedSecond: string = String(rawSecond).padStart(2, "0")
-            return `${formattedMinute}:${formattedSecond}`
-        } else {
-            const formattedHour: string = String(rawHour)
-            const formattedMinute: string = String(rawMinute).padStart(2, "0")
-            const formattedSecond: string = String(rawSecond).padStart(2, "0")
-            return `${formattedHour}:${formattedMinute}:${formattedSecond}`
-        }
+    if (rawHour === 0) {
+        const formattedMinute: string = String(rawMinute)
+        const formattedSecond: string = String(rawSecond).padStart(2, "0")
+        return `${formattedMinute}:${formattedSecond}`
+    } else {
+        const formattedHour: string = String(rawHour)
+        const formattedMinute: string = String(rawMinute).padStart(2, "0")
+        const formattedSecond: string = String(rawSecond).padStart(2, "0")
+        return `${formattedHour}:${formattedMinute}:${formattedSecond}`
     }
+}
 
+function StopWatch({timer}: StopWatchProps) {
     return (
-        <p>{formattedTimer()}</p>
+        <p className={style.stopWatch}>{formatTimer(timer)}</p>
     )
 }
 

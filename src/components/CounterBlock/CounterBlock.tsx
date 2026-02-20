@@ -1,6 +1,6 @@
+import { getColumn, sequenceCount } from "@/components/utils/components-utils";
 import { useCallback, useMemo } from "react";
-import { getColumn, sequenceCount } from "../utils/components-utils";
-import "./CounterBlock.scss";
+import style from "./CounterBlock.module.scss";
 
 type CounterProps = {
     solutionGrid: boolean[][]
@@ -28,9 +28,9 @@ function CounterBlock({ solutionGrid, currentGrid, isXAxis }: CounterProps) {
     }
 
     return (
-        <div className={"counter"} data-x-axis={isXAxis}>
+        <div className={style.counterBlock} data-x-axis={isXAxis}>
             {solutionSequences.map((value: boolean[], index: number) => 
-                <p className="counter-p" data-is-guessed={isGuessed(index)}>
+                <p data-is-guessed={isGuessed(index)}>
                     {sequenceCount(value)}
                 </p>
             )}

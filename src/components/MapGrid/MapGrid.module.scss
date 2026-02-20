@@ -1,0 +1,19 @@
+.mapGrid {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    width: 60px;
+    border: 1px solid black;
+
+    .mapLine {
+        display: flex;
+        flex-direction: row;
+
+        .mapCell {
+            aspect-ratio: 1;
+            &[data-is-checked="true"] {
+                background-color: #000000;
+            }
+        }
+    }
+}

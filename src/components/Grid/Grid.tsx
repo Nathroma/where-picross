@@ -1,5 +1,5 @@
-import Cell from "../Cell/Cell";
-import "./Grid.scss";
+import Cell from "@/components/Cell/Cell";
+import style from "./Grid.module.scss";
 
 type stateGridProps= {
     stateGrid: boolean[][]
@@ -8,9 +8,9 @@ type stateGridProps= {
 
 function Grid({stateGrid, onCellClick}: stateGridProps) {
     return (
-        <div className='grid'>
+        <div className={style.grid}>
             {stateGrid.map((value: boolean[], line: number)=> 
-                <div className="line">
+                <div className={style.line}>
                 {value.map((value: boolean, cell: number)=> 
                     <Cell isChecked={value} onInteract={() => {onCellClick(line, cell);}}/>
                 )}

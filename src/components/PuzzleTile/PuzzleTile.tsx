@@ -1,20 +1,22 @@
-import type { PicrossDatas } from "../utils/picross-schema"
-import "./PuzzleTile.scss"
+import MapGrid from "@/components/MapGrid/MapGrid";
+import type { PicrossDatas } from "@/components/utils/picross-schema";
+import { useLoadProgress } from "@/hooks/save-load";
+import style from "./PuzzleTile.module.scss";
 
 type PuzzleTileProps = {
-    selectedPuzzle: PicrossDatas
+    puzzle: PicrossDatas
     clickTile: () => unknown
 }
 
-function PuzzleTile({selectedPuzzle, clickTile}: PuzzleTileProps) {
-
-    const puzzleSize = `${selectedPuzzle.grid.length}x${selectedPuzzle.grid[0].length}`
+function PuzzleTile({puzzle, clickTile}: PuzzleTileProps) {
+    const puzzleSize = `${puzzle.grid.length}x${puzzle.grid[0].length}`
+    const blankState: boolean[][] = Array(puzzle.grid.length).fill(Array(puzzle.grid[0].length).fill(false))
 
     return (
-        <div className="tile" onClick={() => clickTile()}>
-            <h3>{selectedPuzzle.name}</h3>
+        <div className={style.tile} data-complete={useLoadProgress(puzzle.id).isComplete} onClick={() => clickTile()}>
+            <h3>{useLoadProgress(puzzle.id).isComplete ? puzzle.name : "???"}</h3>
             <p>{puzzleSize}</p>
-            <img src="src\assets\question-mark.svg" alt="question-mark" />
+            <MapGrid grid={useLoadProgress(puzzle.id).gridState ?? blankState}/>
         </div>
     )
 }
