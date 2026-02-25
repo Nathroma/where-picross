@@ -8,10 +8,9 @@ import style from "./GamePage.module.scss";
 
 type GamePageProps = {
     picross: PicrossDatas
-    returnToMenu: () => unknown
 }
 
-function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
+function GamePage({picross}: GamePageProps) {
 
     const [isFinished, setIsFinished] = useState<boolean>(useLoadProgress(picross.id).isComplete)
     const [timer, setTimer] = useState<number>(useLoadProgress(picross.id).time)
@@ -58,10 +57,6 @@ function GamePage({picross, returnToMenu: returnToMainMenu}: GamePageProps) {
     return (
         <div className={style.gamePage}>
             <div className={style.boardHeader}>
-                <button className={style.mainMenuButton} onClick={() => returnToMainMenu()}>
-                    <img src="./src/assets/arrow.svg" alt="return-arrow" />
-                    <img src="./src/assets/house.svg" alt="house" />
-                </button>
                 {isFinished ? <p>Félicitation ! vous avez mis {formatTimer(timer)}</p> : <p/>}
             </div>
             <div className={style.board}>

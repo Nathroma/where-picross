@@ -11,23 +11,25 @@ function AppHeader({returnToMainMenu, selectPage, isMainMenu}: AppHeaderProps) {
 
     return (
         <div className={style.header}>
-            <div className={style.titleLogo}>
-                <h1>Where Picross</h1>
-                <img src="/where-picross-logo.png" alt="where-picross-logo" />
-            </div>
-            <div className={style.otherPage}>
-                {
-                    isMainMenu ? (
-                        <div>
-                            <button onClick={() => selectPage(SelectablePage.creatorPage)}>Creator</button>
-                            <button onClick={() => selectPage(SelectablePage.canvasPage)}>Canvas</button>
-                        </div>
-                    ) : (
-                        <div>
-                            <button onClick={() => returnToMainMenu()}>Home</button>
-                        </div>
-                    )
-                }
+            <div className={style.headerContent}>
+                <div className={style.titleLogo}>
+                    <h1>Where Picross</h1>
+                    <img src="/where-picross-logo.png" alt="where-picross-logo" />
+                </div>
+                <div className={style.otherPage}>
+                    {
+                        isMainMenu ? (
+                            <div>
+                                <button onClick={() => selectPage(SelectablePage.creatorPage)}>Creator</button>
+                                <button onClick={() => selectPage(SelectablePage.canvasPage)}>Canvas</button>
+                            </div>
+                        ) : (
+                            <div>
+                                <button onClick={() => returnToMainMenu()}>Home</button>
+                            </div>
+                        )
+                    }
+                </div>
             </div>
             <div className={style.divider}/>
         </div>

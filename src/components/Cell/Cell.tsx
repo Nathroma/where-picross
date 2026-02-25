@@ -28,7 +28,7 @@ function Cell({ isChecked, onInteract}: CellProps) {
     return (
         <div className={style.cell} 
             data-is-checked={isChecked}
-            onClick={toggleChecked} 
+            onClick={toggleChecked}
             onContextMenu={toggleCrossed}>
             {(isCrossed) && (
                 <img src={"./src/assets/cross.svg"} alt="cross" />

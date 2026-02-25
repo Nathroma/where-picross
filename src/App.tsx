@@ -41,7 +41,7 @@ function App() {
       {
         {
           mainMenu: <MainMenu onPuzzleSelect={setCurrentPuzzle}/>,
-          gamePage: <GamePage picross={currentPuzzle!} returnToMenu={() => setCurrentPuzzle(null)}/>,
+          gamePage: <GamePage picross={currentPuzzle!}/>,
           creatorPage: <PicrossCreatorPage/>,
           canvasPage: <PhotoToPicross/>,
         }[currentPage]
