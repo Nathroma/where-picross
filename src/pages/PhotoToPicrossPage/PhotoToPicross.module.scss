@@ -1,17 +1,37 @@
 .canvasDiv {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 50px;
-    
-    .squareCanvas {
-        width: 200px;
-        height: 200px;
-        border: 1px solid black;
+
+    .theButtonLegion {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        button {
+            background-color: lightgray;
+            color: black;
+            width: 120px; 
+            height: 40px;
+        }
+    }
+
+    .theSliderLegion {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
     }
 
     .imageCanvas {
         width: 220px;
         height: 220px;
         border: 1px solid black;
+        image-rendering: pixelated;
     }
 }
