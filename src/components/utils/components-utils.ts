@@ -1,3 +1,5 @@
+import type { Picross } from "@/types/global-types";
+
 export const getRow = (grid: Picross, index: number) => grid[index];
 
 export const getColumn = (grid: Picross, index: number) => grid.map(row => row[index]);

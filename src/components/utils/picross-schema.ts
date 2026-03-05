@@ -1,3 +1,5 @@
+import type { Picross } from "@/types/global-types"
+
 export type PicrossDatas = {
     id: string, 
     name: string,

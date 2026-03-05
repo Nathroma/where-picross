@@ -1,4 +1,5 @@
 import Cell from "@/components/Cell/Cell";
+import type { Picross } from "@/types/global-types";
 import style from "./Grid.module.scss";
 
 type stateGridProps= {

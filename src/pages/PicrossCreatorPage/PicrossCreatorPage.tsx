@@ -104,9 +104,9 @@ function PicrossCreatorPage({picross}: PicrossCreatorPageProps) {
     }
 
     useEffect(() => {
-        setInputHeight(gridState[0].length)
-        setInputWidth(gridState.length)
-    }, [gridState])
+        setInputHeight(puzzleHeight)
+        setInputWidth(puzzleWidth)
+    }, [puzzleHeight, puzzleWidth])
 
     return (
         <div className={style.creatorPage}>
@@ -118,17 +118,26 @@ function PicrossCreatorPage({picross}: PicrossCreatorPageProps) {
                     <img src="src\assets\trash.svg" alt="trash-bin" />
                 </button>
             </div>
-            <ExtendBoardButton onInteract={addGridSize} side={GridSide.top}/>
-            <ReduceBoardButton onInteract={removeGridSize} side={GridSide.top}/>
-            <div className={style.puzzleBoard}>
-                <ExtendBoardButton onInteract={addGridSize} side={GridSide.left}/>
-                <ReduceBoardButton onInteract={removeGridSize} side={GridSide.left}/>
-                <Grid stateGrid={gridState} onCellClick={changeGridState}/>
-                <ExtendBoardButton onInteract={addGridSize} side={GridSide.right}/>
-                <ReduceBoardButton onInteract={removeGridSize} side={GridSide.right}/>
+            <div className={style.sizeButtonHorizontal}>
+                <ExtendBoardButton onInteract={addGridSize} side={GridSide.top}/>
+                <ReduceBoardButton onInteract={removeGridSize} side={GridSide.top}/>
             </div>
-            <ExtendBoardButton onInteract={addGridSize} side={GridSide.bottom}/>
-            <ReduceBoardButton onInteract={removeGridSize} side={GridSide.bottom}/>
+            <div className={style.puzzleBoard}>
+                <div className={style.sizeButtonVertical}>
+                    <ExtendBoardButton onInteract={addGridSize} side={GridSide.left}/>
+                    <ReduceBoardButton onInteract={removeGridSize} side={GridSide.left}/>
+                </div>
+                <Grid stateGrid={gridState} onCellClick={changeGridState}/>
+                <div className={style.sizeButtonVertical}>
+
+                    <ExtendBoardButton onInteract={addGridSize} side={GridSide.right}/>
+                    <ReduceBoardButton onInteract={removeGridSize} side={GridSide.right}/>
+                </div>
+            </div>
+            <div className={style.sizeButtonHorizontal}>
+                <ExtendBoardButton onInteract={addGridSize} side={GridSide.bottom}/>
+                <ReduceBoardButton onInteract={removeGridSize} side={GridSide.bottom}/>
+            </div>
             <button onClick={() =>  console.log(gridState)}>Log</button>
         </div>
     )

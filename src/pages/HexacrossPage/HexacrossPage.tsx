@@ -1,4 +1,5 @@
 import HexaCell from "@/components/HexaCell/HexaCell"
+import type { Picross } from "@/types/global-types"
 import { useState } from "react"
 import style from "./HexacrossPage.module.scss"
 

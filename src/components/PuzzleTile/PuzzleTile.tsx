@@ -1,6 +1,7 @@
 import MapGrid from "@/components/MapGrid/MapGrid";
 import type { PicrossDatas } from "@/components/utils/picross-schema";
 import { useLoadProgress } from "@/hooks/save-load";
+import type { Picross } from "@/types/global-types";
 import style from "./PuzzleTile.module.scss";
 
 type PuzzleTileProps = {

@@ -3,6 +3,7 @@ import Grid from "@/components/Grid/Grid";
 import StopWatch, { formatTimer } from "@/components/StopWatch/StopWatch";
 import type { PicrossDatas } from "@/components/utils/picross-schema";
 import { saveProgress, useLoadProgress } from "@/hooks/save-load";
+import type { Picross } from "@/types/global-types";
 import { useEffect, useMemo, useState } from "react";
 import style from "./GamePage.module.scss";
 

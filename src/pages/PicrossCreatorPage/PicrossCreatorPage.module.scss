@@ -51,3 +51,15 @@
     align-items: center;
     gap: 25px;
 }
+
+.sizeButtonHorizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.sizeButtonVertical {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

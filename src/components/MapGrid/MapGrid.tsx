@@ -1,3 +1,4 @@
+import type { Picross } from "@/types/global-types"
 import style from "./MapGrid.module.scss"
 
 type MapGridProps = {
