@@ -1,16 +1,17 @@
 import { getColumn, sequenceCount } from "@/components/utils/components-utils";
+import type { Picross } from "@/types/global-types";
 import { useCallback, useMemo } from "react";
 import style from "./CounterBlock.module.scss";
 
 type CounterProps = {
-    solutionGrid: boolean[][]
-    currentGrid: boolean[][]
+    solutionGrid: Picross
+    currentGrid: Picross
     isXAxis: boolean
 }
 
 function CounterBlock({ solutionGrid, currentGrid, isXAxis }: CounterProps) {
 
-    const sequencesForGrid = useCallback((grid: boolean[][]) => {
+    const sequencesForGrid = useCallback((grid: Picross) => {
         if (isXAxis) { 
             return grid
         } else {

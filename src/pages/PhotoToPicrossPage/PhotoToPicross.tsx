@@ -7,7 +7,7 @@ const canvasSizeSquare: number = 400
 type Pixel = [number, number, number]
 
 type PhotoToPicrossProps = {
-    generatePicross: (picross: boolean[][]) => unknown
+    generatePicross: (picross: Picross) => unknown
 }
 
 enum GrayscaleRenderMethod {

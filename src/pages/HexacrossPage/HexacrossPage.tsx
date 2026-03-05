@@ -18,7 +18,7 @@ function HexacrossPage () {
         [false, false, false]
     ]
 
-    const [currentGrid, setCurrentGrid] = useState<boolean[][]>(cleanState)
+    const [currentGrid, setCurrentGrid] = useState<Picross>(cleanState)
 
     const changeGridState = (line: number, row: number) => {
         const grid = [...currentGrid]

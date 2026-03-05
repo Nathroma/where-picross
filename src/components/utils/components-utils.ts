@@ -1,6 +1,6 @@
-export const getRow = (grid: boolean[][], index: number) => grid[index];
+export const getRow = (grid: Picross, index: number) => grid[index];
 
-export const getColumn = (grid: boolean[][], index: number) => grid.map(row => row[index]);
+export const getColumn = (grid: Picross, index: number) => grid.map(row => row[index]);
 
 export const sequenceCount = (array: boolean[]) => {
     const sequence: number[] = []
@@ -29,6 +29,6 @@ export const sequenceCount = (array: boolean[]) => {
     return sequence.join(" ")
 };
 
-export const getPicrossDifficulty = (grid: boolean[][]) => {
+export const getPicrossDifficulty = (grid: Picross) => {
     return grid.length * grid[0].length
 }

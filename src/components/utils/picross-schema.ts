@@ -1,7 +1,7 @@
 export type PicrossDatas = {
     id: string, 
     name: string,
-    grid: boolean[][],
+    grid: Picross,
 }
 
 // template : 

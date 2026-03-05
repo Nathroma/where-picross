@@ -1,4 +1,5 @@
 import Grid from "@/components/Grid/Grid"
+import type { Picross } from "@/types/global-types"
 import { useEffect, useState } from "react"
 import style from "./PicrossCreatorPage.module.scss"
 
@@ -20,7 +21,7 @@ type GridSizeInputProps = {
 }
 
 type PicrossCreatorPageProps = {
-    picross: boolean[][] | null
+    picross: Picross | null
 }
 
 function ExtendBoardButton({onInteract, side}: ExtendBoardButtonProps) {
@@ -55,7 +56,7 @@ function PicrossCreatorPage({picross}: PicrossCreatorPageProps) {
     const [puzzleHeight, setPuzzleHeight] = useState<number>(picross?.[0]?.length ?? 10)
     const [inputWidth, setInputWidth] = useState<number>(picross?.length ?? 10)
     const [puzzleWidth, setPuzzleWidth] = useState<number>(picross?.[0]?.length ?? 10)
-    const [gridState, setGridState] = useState<boolean[][]>(picross ?? blankState())
+    const [gridState, setGridState] = useState<Picross>(picross ?? blankState())
 
 
     const applyPuzzleSize = () => {

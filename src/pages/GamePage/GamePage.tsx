@@ -16,8 +16,8 @@ function GamePage({picross}: GamePageProps) {
     const [timer, setTimer] = useState<number>(useLoadProgress(picross.id).time)
     
     const solutionGrid = useMemo(() => picross.grid, [])
-    const startState: boolean[][] = Array(solutionGrid.length).fill(Array(solutionGrid[0].length).fill(false))
-    const [currentGrid, setCurrentGrid] = useState<boolean[][]>(useLoadProgress(picross.id).gridState ?? startState)
+    const startState: Picross = Array(solutionGrid.length).fill(Array(solutionGrid[0].length).fill(false))
+    const [currentGrid, setCurrentGrid] = useState<Picross>(useLoadProgress(picross.id).gridState ?? startState)
 
     useEffect(() => {
         if (!isFinished) {

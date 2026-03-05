@@ -1,7 +1,7 @@
 import style from "./MapGrid.module.scss"
 
 type MapGridProps = {
-    grid: boolean[][]
+    grid: Picross
 }
 
 function MapGrid({grid}: MapGridProps) {

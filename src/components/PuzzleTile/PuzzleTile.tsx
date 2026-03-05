@@ -10,7 +10,7 @@ type PuzzleTileProps = {
 
 function PuzzleTile({puzzle, clickTile}: PuzzleTileProps) {
     const puzzleSize = `${puzzle.grid.length}x${puzzle.grid[0].length}`
-    const blankState: boolean[][] = Array(puzzle.grid.length).fill(Array(puzzle.grid[0].length).fill(false))
+    const blankState: Picross = Array(puzzle.grid.length).fill(Array(puzzle.grid[0].length).fill(false))
 
     return (
         <div className={style.tile} data-complete={useLoadProgress(puzzle.id).isComplete} onClick={() => clickTile()}>

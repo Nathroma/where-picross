@@ -2,7 +2,7 @@ import Cell from "@/components/Cell/Cell";
 import style from "./Grid.module.scss";
 
 type stateGridProps= {
-    stateGrid: boolean[][]
+    stateGrid: Picross
     onCellClick: (lineIndex: number, columnIndex: number) => unknown
 }
 
