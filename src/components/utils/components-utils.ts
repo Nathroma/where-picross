@@ -26,7 +26,7 @@ export const sequenceCount = (array: boolean[]) => {
         sequence.push(squareNumber)
     }
     sequence.length === 0 ? sequence.push(0) : null
-    return sequence.join("-")
+    return sequence.join(" ")
 };
 
 export const getPicrossDifficulty = (grid: boolean[][]) => {

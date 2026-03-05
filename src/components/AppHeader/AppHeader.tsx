@@ -22,6 +22,7 @@ function AppHeader({returnToMainMenu, selectPage, isMainMenu}: AppHeaderProps) {
                             <div>
                                 <button onClick={() => selectPage(SelectablePage.creatorPage)}>Creator</button>
                                 <button onClick={() => selectPage(SelectablePage.canvasPage)}>Canvas</button>
+                                <button onClick={() => selectPage(SelectablePage.hexaCross)}>Hexacross</button>
                             </div>
                         ) : (
                             <div>

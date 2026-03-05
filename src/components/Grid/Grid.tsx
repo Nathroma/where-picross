@@ -12,7 +12,7 @@ function Grid({stateGrid, onCellClick}: stateGridProps) {
             {stateGrid.map((value: boolean[], line: number)=> 
                 <div className={style.line}>
                 {value.map((value: boolean, cell: number)=> 
-                    <Cell isChecked={value} onInteract={() => {onCellClick(line, cell);}}/>
+                    <Cell isChecked={value} onInteract={() => {onCellClick(line, cell)}}/>
                 )}
                 </div>
             )}

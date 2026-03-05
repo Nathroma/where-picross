@@ -31,10 +31,11 @@
             width: 40px;
             height: 40px;
             text-align: left;
+            text-orientation: sideways;
             transform: rotateZ(90deg);
 
             &[data-is-guessed="true"] {
-                    color: rgb(6, 172, 6);
+                    color: rgb(147, 147, 147);
                     font-size: large;
             }
         }       

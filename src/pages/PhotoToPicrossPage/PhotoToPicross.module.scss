@@ -3,6 +3,12 @@
     flex-direction: column;
     gap: 50px;
 
+    .canvasSizeOption {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
     .theButtonLegion {
         display: flex;
         flex-direction: row;

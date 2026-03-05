@@ -54,7 +54,7 @@ export const picrossList: PicrossDatas[] = [
     },
     {
         id: "dog5x5",
-        name: "Display Name",
+        name: "Chien",
         grid: [
             [false, false, false, false, false],
             [false, false, false, false, false],
@@ -65,7 +65,7 @@ export const picrossList: PicrossDatas[] = [
     },
     {
         id: 'house5x5',
-        name: "Display Name",
+        name: "Maison",
         grid: [
             [false, false, true, false, false],
             [false, true, true, true, false],
@@ -106,7 +106,7 @@ export const picrossList: PicrossDatas[] = [
     // 10 x 10
     {
         id: 'duck10x10',
-        name: "Display Name",
+        name: "Canard",
         grid: [
             [false, false, true, false, false, false, false, false, false, false],
             [false, true, true, true, false, false, false, false, false, false],

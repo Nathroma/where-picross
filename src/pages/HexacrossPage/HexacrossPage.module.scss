@@ -1,0 +1,15 @@
+.hexacrossPage {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    transform: rotateZ(90deg);
+    align-items: center;
+    justify-content: center;
+
+    .line {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+}
