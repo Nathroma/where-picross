@@ -162,10 +162,10 @@ function PhotoToPicross({generatePicross}: PhotoToPicrossProps) {
         for (let i = 0; i < grid.length; i+=1) {
             for (let j = 0; j < grid[0].length; j+=1) {
                 const offset = imageCanvasSize * i
-                if (pixelList[offset + j].includes(255)) {
+                if (pixelList[offset + j][0] === 255) {
                     grid[i][j] = false
                 } else {
-                    grid[i][j] = false
+                    grid[i][j] = true
                 }
             }
         }

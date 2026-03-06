@@ -1,4 +1,5 @@
 import Grid from "@/components/Grid/Grid"
+import { getColumn, sequenceCount } from "@/components/utils/components-utils"
 import type { Picross } from "@/types/global-types"
 import { useEffect, useState } from "react"
 import style from "./PicrossCreatorPage.module.scss"
@@ -94,13 +95,40 @@ function PicrossCreatorPage({picross}: PicrossCreatorPageProps) {
         if (side === GridSide.top || side === GridSide.bottom) {
             side === GridSide.top ? grid.shift() : grid.pop()
         } else {
-            for (let i = 0; i < grid.length; i+=1) {
-                side === GridSide.left ? grid[i].shift() : grid[i].pop()
-            }
+            grid.forEach(line => {
+                side === GridSide.left ? line.shift() : line.pop()
+            });
         }
         setGridState(grid)
         setPuzzleHeight(grid[0].length)
         setPuzzleWidth(grid.length)
+    }
+
+    const removeEmptyLine = () => {
+        let grid = [...gridState.map(row => [...row])]
+        
+        const isRowEmpty = (row: boolean[]) => sequenceCount(row) === "0"
+        const isColEmpty = (columnIndex: number) => sequenceCount(getColumn(grid, columnIndex)) === "0"
+
+        while (grid.length > 1 && isRowEmpty(grid[0])) {
+            grid.shift()
+        }
+
+        while (grid.length > 1 && isRowEmpty(grid[grid.length - 1])) {
+            grid.pop()
+        }
+
+        while (grid[0].length > 1 && isColEmpty(0)) {
+            grid.forEach(row => row.shift())
+        }
+
+        while (grid[0].length > 1 && isColEmpty(grid[0].length - 1)) {
+            grid.forEach(row => row.pop())
+        }
+
+        setGridState(grid)
+        setPuzzleHeight(grid.length)
+        setPuzzleWidth(grid[0].length)
     }
 
     useEffect(() => {
@@ -117,6 +145,7 @@ function PicrossCreatorPage({picross}: PicrossCreatorPageProps) {
                 <button className={style.clearGridButton} onClick={() => setGridState(blankState())}>
                     <img src="src\assets\trash.svg" alt="trash-bin" />
                 </button>
+                <button className={style.autoResizeButton} onClick={() => removeEmptyLine()}>Resize</button>
             </div>
             <div className={style.sizeButtonHorizontal}>
                 <ExtendBoardButton onInteract={addGridSize} side={GridSide.top}/>
