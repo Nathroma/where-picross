@@ -107,14 +107,14 @@ function PicrossCreatorPage({picross}: PicrossCreatorPageProps) {
     const removeEmptyLine = () => {
         let grid = [...gridState.map(row => [...row])]
         
-        const isRowEmpty = (row: boolean[]) => sequenceCount(row) === "0"
+        const isLineEmpty = (row: boolean[]) => sequenceCount(row) === "0"
         const isColEmpty = (columnIndex: number) => sequenceCount(getColumn(grid, columnIndex)) === "0"
 
-        while (grid.length > 1 && isRowEmpty(grid[0])) {
+        while (grid.length > 1 && isLineEmpty(grid[0])) {
             grid.shift()
         }
 
-        while (grid.length > 1 && isRowEmpty(grid[grid.length - 1])) {
+        while (grid.length > 1 && isLineEmpty(grid[grid.length - 1])) {
             grid.pop()
         }
 
